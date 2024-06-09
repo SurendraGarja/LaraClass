@@ -26,6 +26,7 @@
             <input type="text" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Price" name="price" >
         </div>
 
+        
         <div class="mb-5">
             <input type="text" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Stock" name="stock" >
         </div>
