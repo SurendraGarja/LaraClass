@@ -15,22 +15,32 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+        @if(Session::has('success'))
+        <div class="flex top-4 right-4 rounded-4 rounded-lg shadow-md bg-blue-600 text-white px-5 py-3" id="message">
+            <p>{{session('success')}}</p>
+        </div>
+        <script>
+            setTimeout(() =>{
+                document.getElementById('message').style.display = 'none';
+            }, 2000)
+        </script>
+        @endif
+        <div class="flex">
+            <div class="w-56 h-screen bg-gray-100 shadow">
+                <img src="https://www.bitmapitsolution.com/images/logo/logo.png" alt="" class="p-2 m-2 w-10/12 mx-auto mt-5 bg-white tounded-lg shadow-lg">
+                <div class="mt-5">
+                    <a href="{{route('dashboard')}}" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">dashboard</a>
+                    <a href="{{route('categories.index')}}" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Categories</a>
+                    <a href="{{route('products.index')}}" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Products</a>
+                    <a href="" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Users</a>
+                    <a href="" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Orders</a>
+                    <a href="" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Logout</a>
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                </div>
+            </div>
+            <div class="p-4 flex-1">
+                @yield('content')
+            </div>
         </div>
     </body>
 </html>
